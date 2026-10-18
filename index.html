@@ -10,8 +10,8 @@
     <style>
         :root {
             --bg: #020617;
-            --panel: rgba(15, 23, 42, 0.7);
-            --line: rgba(186, 230, 253, 0.1);
+            --panel: rgba(15, 23, 42, 0.6);
+            --line: rgba(148, 163, 184, 0.15);
             --text: #f8fafc;
             --muted: #94a3b8;
             --accent: #22d3ee;
@@ -21,147 +21,138 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
         body { background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; position: relative; min-height: 100vh; }
         
+        /* Subtle Premium Background */
         body::before {
             content: ''; position: fixed; inset: 0;
-            background: radial-gradient(circle at 10% 20%, rgba(34, 211, 238, 0.04) 0%, transparent 40%),
-                        radial-gradient(circle at 90% 80%, rgba(59, 130, 246, 0.04) 0%, transparent 40%);
+            background: radial-gradient(circle at 15% 20%, rgba(34, 211, 238, 0.05) 0%, transparent 40%),
+                        radial-gradient(circle at 85% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 40%);
             z-index: -1; pointer-events: none;
         }
 
-        /* Subtle Falling Animation */
+        /* Elegant Falling Animation (Background only) */
         .falling-item {
-            position: fixed; top: -50px; z-index: 0; /* Changed to 0 so it stays behind content */
+            position: fixed; top: -50px; z-index: 0;
             user-select: none; pointer-events: none;
             animation-name: fallSwing; animation-timing-function: linear;
         }
         @keyframes fallSwing {
             0% { transform: translateY(0) rotate(0deg) translateX(0); opacity: 0; }
-            10% { opacity: 0.4; } /* More subtle */
-            50% { transform: translateY(50vh) rotate(180deg) translateX(30px); }
-            100% { transform: translateY(110vh) rotate(360deg) translateX(-30px); opacity: 0; }
+            10% { opacity: 0.3; }
+            50% { transform: translateY(50vh) rotate(180deg) translateX(20px); }
+            100% { transform: translateY(110vh) rotate(360deg) translateX(-20px); opacity: 0; }
         }
 
-        /* Compact Header */
+        /* SLEEK HEADER */
         header {
             position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
             background: rgba(2, 6, 23, 0.85); backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--line); padding: 0.7rem 1.5rem;
+            border-bottom: 1px solid var(--line); padding: 1rem 2rem;
             display: flex; justify-content: space-between; align-items: center;
         }
-        .logo { font-weight: 700; font-size: 1.1rem; text-decoration: none; color: var(--text); }
-        .logo span { color: var(--accent); text-shadow: 0 0 10px rgba(34, 211, 238, 0.4); }
-        nav { display: flex; gap: 1.2rem; align-items: center; }
-        nav a { color: var(--muted); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.2s; }
-        nav a:hover { color: var(--accent); }
+        .logo { font-weight: 800; font-size: 1.3rem; text-decoration: none; color: var(--text); letter-spacing: -0.5px; }
+        .logo span { color: var(--accent); text-shadow: 0 0 15px rgba(34, 211, 238, 0.5); }
+        nav { display: flex; gap: 1.5rem; align-items: center; }
+        nav a { color: var(--muted); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.2s; }
+        nav a:hover { color: var(--text); }
         .nav-btn {
-            background: var(--gradient); color: #020617; padding: 6px 14px;
-            border-radius: 6px; font-weight: 600; cursor: pointer; border: none;
-            font-size: 0.8rem; transition: all 0.3s;
+            background: var(--gradient); color: #020617; padding: 0.6rem 1.4rem;
+            border-radius: 8px; font-weight: 600; cursor: pointer; border: none;
+            font-size: 0.9rem; transition: all 0.3s;
         }
         .nav-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 15px rgba(34, 211, 238, 0.4); }
 
-        /* Tighter Hero Section */
-        .hero { min-height: 70vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 5rem 1.5rem 2rem; }
-        .badge { background: rgba(239, 68, 68, 0.1); color: #fca5a5; padding: 4px 12px; border-radius: 99px; font-size: 0.75rem; font-weight: 600; margin-bottom: 1.2rem; border: 1px solid rgba(239, 68, 68, 0.2); }
-        h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.8rem; line-height: 1.1; }
+        /* BALANCED HERO SECTION */
+        .hero { min-height: 80vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 6rem 2rem 3rem; }
+        .badge { background: rgba(239, 68, 68, 0.1); color: #fca5a5; padding: 0.5rem 1.2rem; border-radius: 99px; font-size: 0.85rem; font-weight: 600; margin-bottom: 1.5rem; border: 1px solid rgba(239, 68, 68, 0.2); }
+        h1 { font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 1.2rem; line-height: 1.1; }
         h1 span { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         
-        .typing-container {
-            font-family: 'Fira Code', monospace;
-            font-size: 1.1rem;
-            color: var(--accent);
-            margin-bottom: 1.5rem;
-            height: 1.5rem;
-        }
+        .typing-container { font-family: 'Fira Code', monospace; font-size: 1.2rem; color: var(--accent); margin-bottom: 1.5rem; height: 1.5rem; }
         .cursor { display: inline-block; width: 2px; background-color: var(--accent); animation: blink 1s infinite; }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
         
-        .sub { color: var(--muted); font-size: 1rem; max-width: 500px; margin-bottom: 1.8rem; }
-        .cta-group { display: flex; gap: 0.8rem; flex-wrap: wrap; justify-content: center; }
-        .btn { padding: 10px 22px; border-radius: 8px; font-weight: 600; text-decoration: none; transition: all 0.3s; cursor: pointer; border: none; font-size: 0.9rem; }
-        .btn-primary { background: var(--gradient); color: #020617; }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(34, 211, 238, 0.3); }
+        .sub { color: var(--muted); font-size: 1.1rem; max-width: 600px; margin-bottom: 2.5rem; line-height: 1.7; }
+        .cta-group { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+        .btn { padding: 0.85rem 2rem; border-radius: 10px; font-weight: 600; text-decoration: none; transition: all 0.3s; cursor: pointer; border: none; font-size: 1rem; }
+        .btn-primary { background: var(--gradient); color: #020617; box-shadow: 0 4px 15px rgba(34, 211, 238, 0.3); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(34, 211, 238, 0.5); }
         .btn-secondary { background: rgba(255, 255, 255, 0.05); color: var(--text); border: 1px solid var(--line); }
         .btn-secondary:hover { background: rgba(255, 255, 255, 0.1); border-color: var(--accent); }
 
-        /* Tighter Sections */
-        .section { padding: 3rem 1.5rem; max-width: 1000px; margin: 0 auto; }
-        .section-title { font-size: 1.6rem; font-weight: 700; margin-bottom: 2rem; text-align: center; }
+        /* PERFECTLY SPACED SECTIONS */
+        .section { padding: 4rem 2rem; max-width: 1100px; margin: 0 auto; }
+        .section-title { font-size: 2rem; font-weight: 700; margin-bottom: 3rem; text-align: center; letter-spacing: -0.02em; }
         
         .project-card {
-            background: var(--panel); backdrop-filter: blur(20px);
-            border: 1px solid var(--line); border-radius: 14px;
-            padding: 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s;
+            background: var(--panel); backdrop-filter: blur(16px);
+            border: 1px solid var(--line); border-radius: 16px;
+            padding: 2.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: center;
+            transition: all 0.3s ease;
         }
-        .project-card:hover { border-color: rgba(34, 211, 238, 0.3); box-shadow: 0 15px 50px rgba(34, 211, 238, 0.1); }
-        @media(max-width: 768px) { .project-card { grid-template-columns: 1fr; padding: 1.5rem; } }
+        .project-card:hover { border-color: rgba(34, 211, 238, 0.3); transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3); }
+        @media(max-width: 850px) { .project-card { grid-template-columns: 1fr; padding: 2rem; } }
         
-        .project-img img { width: 100%; border-radius: 10px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); border: 1px solid var(--line); }
-        .project-info h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
-        .project-info p { color: var(--muted); margin-bottom: 1rem; font-size: 0.95rem; }
-        .tags { display: flex; gap: 0.5rem; margin-bottom: 1.2rem; flex-wrap: wrap; }
-        .tag { background: rgba(34, 211, 238, 0.05); padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; color: var(--accent); border: 1px solid rgba(34, 211, 238, 0.2); }
+        .project-img img { width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); border: 1px solid var(--line); }
+        .project-info h3 { font-size: 1.75rem; margin-bottom: 0.8rem; font-weight: 700; }
+        .project-info p { color: var(--muted); margin-bottom: 1.5rem; font-size: 1rem; line-height: 1.7; }
+        .tags { display: flex; gap: 0.6rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .tag { background: rgba(34, 211, 238, 0.08); padding: 0.4rem 1rem; border-radius: 6px; font-size: 0.85rem; color: var(--accent); border: 1px solid rgba(34, 211, 238, 0.2); font-weight: 500; }
 
-        /* Perfect 6-Box Grid */
+        /* BALANCED 6-BOX GRID */
         .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.2rem;
-            justify-content: center;
-            max-width: 950px;
-            margin: 0 auto;
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; justify-content: center; max-width: 1100px; margin: 0 auto;
         }
-        @media(max-width: 900px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media(max-width: 600px) { .services-grid { grid-template-columns: 1fr; } }
+        @media(max-width: 950px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media(max-width: 650px) { .services-grid { grid-template-columns: 1fr; } }
 
         .service-card {
-            background: var(--panel); backdrop-filter: blur(20px);
-            border: 1px solid var(--line); border-radius: 12px;
-            padding: 1.5rem; transition: all 0.3s; height: 100%;
+            background: var(--panel); backdrop-filter: blur(16px);
+            border: 1px solid var(--line); border-radius: 14px;
+            padding: 2rem; transition: all 0.3s ease; height: 100%;
         }
-        .service-card:hover { transform: translateY(-3px); border-color: rgba(34, 211, 238, 0.3); background: rgba(34, 211, 238, 0.03); }
-        .service-icon { font-size: 1.6rem; margin-bottom: 0.6rem; }
-        .service-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
-        .service-card p { color: var(--muted); font-size: 0.85rem; line-height: 1.5; }
+        .service-card:hover { transform: translateY(-4px); border-color: rgba(34, 211, 238, 0.3); background: rgba(34, 211, 238, 0.05); }
+        .service-icon { font-size: 2rem; margin-bottom: 1rem; }
+        .service-card h3 { font-size: 1.2rem; margin-bottom: 0.7rem; font-weight: 600; }
+        .service-card p { color: var(--muted); font-size: 0.95rem; line-height: 1.6; }
 
-        /* Process Section */
-        .process-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; text-align: center; max-width: 850px; margin: 0 auto; }
-        @media(max-width: 768px) { .process-grid { grid-template-columns: 1fr; gap: 1rem; } }
-        .process-step { padding: 1.5rem; background: var(--panel); border-radius: 12px; border: 1px solid var(--line); }
-        .step-num { font-size: 2rem; font-weight: 800; color: var(--accent); opacity: 0.4; margin-bottom: 0.5rem; }
-        .process-step h3 { margin-bottom: 0.4rem; font-size: 1.1rem; }
-        .process-step p { color: var(--muted); font-size: 0.85rem; }
+        /* PROCESS SECTION */
+        .process-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; text-align: center; max-width: 950px; margin: 0 auto; }
+        @media(max-width: 800px) { .process-grid { grid-template-columns: 1fr; gap: 1.5rem; } }
+        .process-step { padding: 2rem; background: var(--panel); border-radius: 14px; border: 1px solid var(--line); transition: all 0.3s; }
+        .process-step:hover { border-color: rgba(34, 211, 238, 0.3); transform: translateY(-3px); }
+        .step-num { font-size: 2.5rem; font-weight: 800; color: var(--accent); opacity: 0.4; margin-bottom: 0.8rem; }
+        .process-step h3 { margin-bottom: 0.5rem; font-size: 1.2rem; font-weight: 600; }
+        .process-step p { color: var(--muted); font-size: 0.95rem; line-height: 1.6; }
 
-        /* Clean Footer (No massive padding) */
-        footer { text-align: center; padding: 2rem 1.5rem 5rem; border-top: 1px solid var(--line); color: var(--muted); margin-top: 1rem; }
-        .social-links { display: flex; justify-content: center; gap: 1.2rem; margin-bottom: 1rem; align-items: center; flex-wrap: wrap; }
-        .social-links a { color: var(--text); text-decoration: none; font-weight: 500; transition: color 0.2s; font-size: 0.9rem; }
+        /* CLEAN FOOTER */
+        footer { text-align: center; padding: 3rem 2rem 5rem; border-top: 1px solid var(--line); color: var(--muted); margin-top: 2rem; }
+        .social-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1.5rem; align-items: center; flex-wrap: wrap; }
+        .social-links a { color: var(--text); text-decoration: none; font-weight: 500; transition: color 0.2s; font-size: 0.95rem; }
         .social-links a:hover { color: var(--accent); }
-        .email-copy-btn { background: transparent; border: 1px solid var(--line); color: var(--text); padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; transition: all 0.3s; font-weight: 500; }
-        .email-copy-btn:hover { border-color: var(--accent); color: var(--accent); }
-        footer p { font-size: 0.8rem; }
+        .email-copy-btn { background: transparent; border: 1px solid var(--line); color: var(--text); padding: 0.6rem 1.2rem; border-radius: 8px; cursor: pointer; font-size: 0.9rem; transition: all 0.3s; font-weight: 500; }
+        .email-copy-btn:hover { border-color: var(--accent); color: var(--accent); background: rgba(34, 211, 238, 0.05); }
+        footer p { font-size: 0.9rem; }
 
-        /* Toast */
-        .toast { position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%) translateY(100px); background: var(--gradient); color: #020617; padding: 10px 20px; border-radius: 8px; font-weight: 700; font-size: 0.85rem; box-shadow: 0 8px 32px rgba(34, 211, 238, 0.4); transition: transform .3s ease; z-index: 9999; opacity: 0; pointer-events: none; }
+        /* TOAST */
+        .toast { position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%) translateY(100px); background: var(--gradient); color: #020617; padding: 0.8rem 1.8rem; border-radius: 10px; font-weight: 700; font-size: 0.95rem; box-shadow: 0 8px 32px rgba(34, 211, 238, 0.4); transition: transform .3s ease; z-index: 9999; opacity: 0; pointer-events: none; }
         .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
 
-        /* AI Chat Widget */
-        .ai-widget { position: fixed; bottom: 20px; right: 20px; z-index: 1000; }
-        .ai-btn { width: 50px; height: 50px; border-radius: 50%; background: var(--gradient); border: none; cursor: pointer; box-shadow: 0 4px 20px rgba(34, 211, 238, 0.4); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; transition: transform 0.3s; }
+        /* AI CHAT WIDGET (Compact & Clean) */
+        .ai-widget { position: fixed; bottom: 25px; right: 25px; z-index: 1000; }
+        .ai-btn { width: 56px; height: 56px; border-radius: 50%; background: var(--gradient); border: none; cursor: pointer; box-shadow: 0 4px 20px rgba(34, 211, 238, 0.4); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; transition: transform 0.3s; }
         .ai-btn:hover { transform: scale(1.1); }
-        .ai-chat-box { position: absolute; bottom: 65px; right: 0; width: 280px; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(20px); border: 1px solid var(--line); border-radius: 12px; padding: 1.2rem; display: none; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5); }
+        .ai-chat-box { position: absolute; bottom: 70px; right: 0; width: 300px; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(20px); border: 1px solid var(--line); border-radius: 14px; padding: 1.5rem; display: none; box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5); }
         .ai-chat-box.active { display: block; animation: slideUp 0.3s ease; }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .chat-header { display: flex; align-items: center; gap: 8px; margin-bottom: 0.8rem; border-bottom: 1px solid var(--line); padding-bottom: 8px; }
-        .chat-avatar { width: 28px; height: 28px; background: var(--gradient); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; }
-        .chat-header h4 { font-size: 0.85rem; }
-        .chat-header span { font-size: 0.65rem; color: var(--accent); }
-        .chat-body { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
-        .chat-input { margin-top: 0.8rem; display: flex; gap: 5px; }
-        .chat-input input { flex: 1; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; color: var(--text); font-size: 0.75rem; outline: none; }
-        .chat-input button { background: var(--accent); color: #020617; border: none; border-radius: 6px; padding: 0 10px; cursor: pointer; font-weight: 600; font-size: 0.75rem; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        .chat-header { display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; border-bottom: 1px solid var(--line); padding-bottom: 0.8rem; }
+        .chat-avatar { width: 36px; height: 36px; background: var(--gradient); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+        .chat-header h4 { font-size: 0.95rem; font-weight: 600; }
+        .chat-header span { font-size: 0.75rem; color: var(--accent); }
+        .chat-body { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+        .chat-input { margin-top: 1rem; display: flex; gap: 6px; }
+        .chat-input input { flex: 1; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--line); border-radius: 8px; padding: 0.7rem; color: var(--text); font-size: 0.85rem; outline: none; }
+        .chat-input input:focus { border-color: var(--accent); }
+        .chat-input button { background: var(--accent); color: #020617; border: none; border-radius: 8px; padding: 0 1rem; cursor: pointer; font-weight: 600; font-size: 0.85rem; }
     </style>
 </head>
 <body>
@@ -176,7 +167,7 @@
     </header>
 
     <section class="hero">
-        <div class="badge"> Available for Freelance Work</div>
+        <div class="badge">🚀 Available for Freelance Work</div>
         <h1>I Build <span>Smart Solutions</span><br>That Save Time & Money</h1>
         <div class="typing-container">
             <span id="typing-text"></span><span class="cursor">|</span>
@@ -198,9 +189,12 @@
                 <h3>SiteCheck 🩺</h3>
                 <p>An automated website health auditor that generates PDF reports covering SEO, speed, security, and mobile-friendliness. Built with Python, Flask, and FPDF2.</p>
                 <div class="tags">
-                    <span class="tag">Python</span><span class="tag">Flask</span><span class="tag">FPDF2</span><span class="tag">SEO</span>
+                    <span class="tag">Python</span>
+                    <span class="tag">Flask</span>
+                    <span class="tag">FPDF2</span>
+                    <span class="tag">SEO</span>
                 </div>
-                <a href="https://sitecheck.nikhilbuilds.com" target="_blank" class="btn btn-primary" style="padding: 8px 18px; font-size: 0.85rem;">Try Live Demo →</a>
+                <a href="https://sitecheck.nikhilbuilds.com" target="_blank" class="btn btn-primary" style="padding: 0.75rem 1.5rem; font-size: 0.95rem;">Try Live Demo →</a>
             </div>
         </div>
     </section>
@@ -309,10 +303,7 @@
         }
 
         const texts = ["Web Scrapers...", "AI Automations...", "Custom Dashboards...", "Smart Chatbots..."];
-        let count = 0;
-        let index = 0;
-        let currentText = "";
-        let letter = "";
+        let count = 0, index = 0, currentText = "", letter = "";
 
         (function type() {
             if (count === texts.length) { count = 0; }
@@ -320,12 +311,8 @@
             letter = currentText.slice(0, ++index);
             document.getElementById('typing-text').textContent = letter;
             if (letter.length === currentText.length) {
-                count++;
-                index = 0;
-                setTimeout(type, 2000);
-            } else {
-                setTimeout(type, 80);
-            }
+                count++; index = 0; setTimeout(type, 2000);
+            } else { setTimeout(type, 80); }
         }());
 
         function createFallingItem() {
@@ -338,11 +325,11 @@
             item.style.left = Math.random() * 100 + 'vw';
             item.style.animationDuration = (Math.random() * 7 + 8) + 's';
             item.style.fontSize = (Math.random() * 10 + 12) + 'px';
-            item.style.opacity = Math.random() * 0.3 + 0.2; // More subtle
+            item.style.opacity = Math.random() * 0.3 + 0.15; // Very subtle
             document.body.appendChild(item);
             setTimeout(() => { item.remove(); }, 15000);
         }
-        setInterval(createFallingItem, 400); // Less dense, more elegant
+        setInterval(createFallingItem, 500); // Less dense, more elegant
     </script>
 </body>
 </html>
