@@ -16,96 +16,118 @@
             --accent: #4ade80; 
             --accent2: #60a5fa; 
             --gradient: linear-gradient(135deg, #4ade80 0%, #60a5fa 100%); 
+            --festive-glow: rgba(239, 68, 68, 0.15); /* Subtle red glow */
         }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
-        body { background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; position: relative; }
+        body { background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; position: relative; min-height: 100vh; }
         
-        /* Background Animation */
+        /* Festive Background */
         body::before {
             content:''; position: fixed; inset:0; 
-            background: radial-gradient(circle at 20% 50%,rgba(74,222,128,.15) 0%,transparent 50%),
-                        radial-gradient(circle at 80% 80%,rgba(96,165,250,.15) 0%,transparent 50%);
-            z-index:-1; animation: bgMove 20s ease-in-out infinite; pointer-events: none;
+            background: radial-gradient(circle at 10% 20%, rgba(239, 68, 68, 0.08) 0%, transparent 40%),
+                        radial-gradient(circle at 90% 80%, rgba(74, 222, 128, 0.08) 0%, transparent 40%),
+                        radial-gradient(circle at 50% 50%, rgba(96, 165, 250, 0.05) 0%, transparent 60%);
+            z-index:-1; animation: bgPulse 10s ease-in-out infinite alternate; pointer-events: none;
         }
-        @keyframes bgMove { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-20px,20px)} }
+        @keyframes bgPulse { 0%{opacity:0.8} 100%{opacity:1} }
 
-        /* HEADER / NAVBAR */
+        /* FALLING ITEMS ANIMATION */
+        .falling-item {
+            position: fixed; top: -50px; z-index: 9999; 
+            user-select: none; pointer-events: none;
+            animation-name: fallSwing; animation-timing-function: linear; animation-iteration-count: infinite;
+        }
+        @keyframes fallSwing { 
+            0% { transform: translateY(0) rotate(0deg) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            25% { transform: translateY(25vh) rotate(15deg) translateX(20px); }
+            50% { transform: translateY(50vh) rotate(-10deg) translateX(-20px); }
+            75% { transform: translateY(75vh) rotate(10deg) translateX(15px); }
+            100% { transform: translateY(110vh) rotate(0deg) translateX(0); opacity: 0.8; }
+        }
+
+        /* COMPACT HEADER */
         header {
             position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-            background: rgba(10, 14, 39, 0.8); backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--line); padding: 1rem 2rem;
+            background: rgba(10, 14, 39, 0.9); backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--line); padding: 0.8rem 2rem;
             display: flex; justify-content: space-between; align-items: center;
         }
-        .logo { font-weight: 800; font-size: 1.2rem; letter-spacing: -0.02em; text-decoration: none; color: var(--text); }
+        .logo { font-weight: 700; font-size: 1.1rem; letter-spacing: -0.01em; text-decoration: none; color: var(--text); }
         .logo span { color: var(--accent); }
-        nav { display: flex; gap: 2rem; align-items: center; }
-        nav a { color: var(--muted); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.2s; }
+        nav { display: flex; gap: 1.5rem; align-items: center; }
+        nav a { color: var(--muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
         nav a:hover { color: var(--text); }
         .nav-btn {
-            background: var(--gradient); color: #0a0e27; padding: 8px 20px; 
-            border-radius: 8px; font-weight: 600; cursor: pointer; border: none; 
-            font-size: 0.9rem; transition: all 0.3s;
+            background: var(--gradient); color: #0a0e27; padding: 6px 16px; 
+            border-radius: 6px; font-weight: 600; cursor: pointer; border: none; 
+            font-size: 0.85rem; transition: all 0.3s;
         }
-        .nav-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(74,222,128,0.3); }
+        .nav-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(74,222,128,0.3); }
 
         /* Hero Section */
-        .hero { min-height: 90vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 6rem 2rem 2rem; }
-        .badge { background: rgba(74,222,128,0.1); color: var(--accent); padding: 6px 16px; border-radius: 99px; font-size: 0.85rem; font-weight: 600; margin-bottom: 1.5rem; border: 1px solid rgba(74,222,128,0.2); }
-        h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 1rem; }
+        .hero { min-height: 85vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 6rem 2rem 2rem; }
+        .badge { background: rgba(239, 68, 68, 0.1); color: #fca5a5; padding: 5px 14px; border-radius: 99px; font-size: 0.8rem; font-weight: 600; margin-bottom: 1.5rem; border: 1px solid rgba(239, 68, 68, 0.2); }
+        h1 { font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 1rem; line-height: 1.1; }
         h1 span { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .sub { color: var(--muted); font-size: 1.2rem; max-width: 600px; margin-bottom: 2.5rem; }
+        .sub { color: var(--muted); font-size: 1.1rem; max-width: 550px; margin-bottom: 2rem; }
         
         .cta-group { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
-        .btn { padding: 14px 28px; border-radius: 12px; font-weight: 600; text-decoration: none; transition: all 0.3s; cursor: pointer; border: none; font-size: 1rem; }
+        .btn { padding: 12px 24px; border-radius: 10px; font-weight: 600; text-decoration: none; transition: all 0.3s; cursor: pointer; border: none; font-size: 0.95rem; }
         .btn-primary { background: var(--gradient); color: #0a0e27; }
         .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(74,222,128,0.3); }
         .btn-secondary { background: rgba(255,255,255,0.05); color: var(--text); border: 1px solid var(--line); }
         .btn-secondary:hover { background: rgba(255,255,255,0.1); border-color: var(--accent); }
 
         /* Projects & Services */
-        .section { padding: 5rem 2rem; max-width: 1100px; margin: 0 auto; }
-        .section-title { font-size: 2rem; font-weight: 700; margin-bottom: 3rem; text-align: center; }
+        .section { padding: 4rem 2rem; max-width: 1100px; margin: 0 auto; }
+        .section-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 2.5rem; text-align: center; }
         
         .project-card { 
             background: var(--panel); backdrop-filter: blur(20px);
-            border: 1px solid var(--line); border-radius: 20px; 
-            padding: 2.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; 
+            border: 1px solid var(--line); border-radius: 16px; 
+            padding: 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: center; 
         }
         @media(max-width: 768px) { .project-card { grid-template-columns: 1fr; padding: 1.5rem; } }
         
-        .project-img img { width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); border: 1px solid var(--line); }
+        .project-img img { width: 100%; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); border: 1px solid var(--line); }
         
-        .project-info h3 { font-size: 1.8rem; margin-bottom: 0.8rem; }
-        .project-info p { color: var(--muted); margin-bottom: 1.5rem; font-size: 1.05rem; }
-        .tags { display: flex; gap: 0.5rem; margin-bottom: 2rem; flex-wrap: wrap; }
-        .tag { background: rgba(255,255,255,0.05); padding: 5px 14px; border-radius: 6px; font-size: 0.85rem; color: var(--muted); border: 1px solid var(--line); }
+        .project-info h3 { font-size: 1.6rem; margin-bottom: 0.6rem; }
+        .project-info p { color: var(--muted); margin-bottom: 1.2rem; font-size: 1rem; }
+        .tags { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .tag { background: rgba(255,255,255,0.05); padding: 4px 12px; border-radius: 6px; font-size: 0.8rem; color: var(--muted); border: 1px solid var(--line); }
 
-        /* Fixed Grid for Services */
+        /* CENTERED GRID FOR 5 BOXES */
         .services-grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            grid-template-columns: repeat(3, 1fr); 
             gap: 1.5rem; 
             justify-content: center; 
+            max-width: 900px; 
+            margin: 0 auto;
         }
+        @media(max-width: 900px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media(max-width: 600px) { .services-grid { grid-template-columns: 1fr; } }
+
         .service-card { 
             background: var(--panel); backdrop-filter: blur(20px);
-            border: 1px solid var(--line); border-radius: 16px; 
-            padding: 2rem; transition: all 0.3s; height: 100%;
+            border: 1px solid var(--line); border-radius: 14px; 
+            padding: 1.8rem; transition: all 0.3s; height: 100%;
         }
         .service-card:hover { transform: translateY(-4px); border-color: rgba(74,222,128,0.3); background: rgba(255,255,255,0.06); }
-        .service-icon { font-size: 2rem; margin-bottom: 1rem; }
-        .service-card h3 { font-size: 1.25rem; margin-bottom: 0.8rem; }
-        .service-card p { color: var(--muted); font-size: 0.95rem; line-height: 1.5; }
+        .service-icon { font-size: 1.8rem; margin-bottom: 0.8rem; }
+        .service-card h3 { font-size: 1.15rem; margin-bottom: 0.6rem; }
+        .service-card p { color: var(--muted); font-size: 0.9rem; line-height: 1.5; }
 
         /* Footer */
-        footer { text-align: center; padding: 4rem 2rem; border-top: 1px solid var(--line); color: var(--muted); margin-top: 3rem; }
-        .social-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 2rem; align-items: center; flex-wrap: wrap; }
+        footer { text-align: center; padding: 3rem 2rem; border-top: 1px solid var(--line); color: var(--muted); margin-top: 2rem; }
+        .social-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1.5rem; align-items: center; flex-wrap: wrap; }
         .social-links a { color: var(--text); text-decoration: none; font-weight: 500; transition: color 0.2s; }
         .social-links a:hover { color: var(--accent); }
         
         .email-copy-btn {
             background: transparent; border: 1px solid var(--line); color: var(--text); 
-            padding: 8px 20px; border-radius: 8px; cursor: pointer; font-size: 0.9rem; 
+            padding: 6px 16px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; 
             transition: all 0.3s; font-weight: 500;
         }
         .email-copy-btn:hover { border-color: var(--accent); color: var(--accent); }
@@ -113,8 +135,8 @@
         /* Toast Notification */
         .toast {
             position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px);
-            background: var(--gradient); color: #0a0e27; padding: 14px 28px; border-radius: 12px;
-            font-weight: 700; font-size: .95rem; box-shadow: 0 8px 32px rgba(74,222,128,.4);
+            background: var(--gradient); color: #0a0e27; padding: 12px 24px; border-radius: 10px;
+            font-weight: 700; font-size: .9rem; box-shadow: 0 8px 32px rgba(74,222,128,.4);
             transition: transform .3s ease; z-index: 9999; opacity: 0; pointer-events: none;
         }
         .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
@@ -128,7 +150,7 @@
         <nav>
             <a href="#projects">Projects</a>
             <a href="#services">Services</a>
-            <button onclick="copyEmail()" class="nav-btn">Contact Us</button>
+            <button onclick="copyEmail()" class="nav-btn">Contact Me</button>
         </nav>
     </header>
 
@@ -138,7 +160,7 @@
         <h1>I Build <span>Automation Tools</span><br>That Save Time & Money</h1>
         <p class="sub">Python developer specializing in web scraping, AI automation, and custom business tools. Turning complex workflows into simple, one-click solutions.</p>
         <div class="cta-group">
-            <button onclick="copyEmail()" class="btn btn-primary">📧 Contact Us</button>
+            <button onclick="copyEmail()" class="btn btn-primary">📧 Contact Me</button>
             <a href="#projects" class="btn btn-secondary">View Projects</a>
         </div>
     </section>
@@ -171,21 +193,20 @@
                 <p>Extract structured data from any website. Clean, organized CSV/Excel delivery for e-commerce, real estate, and lead generation.</p>
             </div>
             <div class="service-card">
-                <div class="service-icon">⚡</div>
+                <div class="service-icon"></div>
                 <h3>Business Automation</h3>
                 <p>Automate repetitive tasks like invoice processing, email sorting, and report generation using Python scripts and AI APIs.</p>
             </div>
             <div class="service-card">
-                <div class="service-icon">️</div>
+                <div class="service-icon">🛠️</div>
                 <h3>Custom Tool Development</h3>
                 <p>Bespoke CLI tools, dashboards, and internal software tailored to your specific business workflow and requirements.</p>
             </div>
             <div class="service-card">
-                <div class="service-icon">📊</div>
+                <div class="service-icon"></div>
                 <h3>Website Health Audits</h3>
                 <p>Comprehensive technical SEO, speed, and security audits with actionable PDF reports and implementation support.</p>
             </div>
-            <!-- 5th Box for Balance -->
             <div class="service-card">
                 <div class="service-icon">🤖</div>
                 <h3>AI Integration & Chatbots</h3>
@@ -200,13 +221,14 @@
             <a href="https://github.com/imnick009" target="_blank">GitHub</a>
             <button onclick="copyEmail()" class="email-copy-btn">hello@nikhilbuilds.com</button>
         </div>
-        <p>© 2026 NikhilBuilds. Built with  and Python.</p>
+        <p>© 2026 NikhilBuilds. Built with ☕ and Python.</p>
     </footer>
 
     <!-- Toast Element -->
     <div class="toast" id="toast">✓ Email copied to clipboard!</div>
 
     <script>
+        // Copy Email Function
         function copyEmail() {
             const email = 'hello@nikhilbuilds.com';
             navigator.clipboard.writeText(email).then(() => {
@@ -215,6 +237,33 @@
                 setTimeout(() => toast.classList.remove('show'), 2500);
             });
         }
+
+        // Festive Falling Items Script
+        const festiveIcons = ['️', '🎁', '', '🍬', '🔔', '⭐', '🧦'];
+        
+        function createFallingItem() {
+            const item = document.createElement('div');
+            item.classList.add('falling-item');
+            
+            // Random icon
+            item.innerHTML = festiveIcons[Math.floor(Math.random() * festiveIcons.length)];
+            
+            // Randomize position, size, speed, and delay
+            item.style.left = Math.random() * 100 + 'vw';
+            item.style.animationDuration = (Math.random() * 4 + 3) + 's'; // 3-7 seconds
+            item.style.fontSize = (Math.random() * 15 + 12) + 'px';
+            item.style.animationDelay = Math.random() * 2 + 's';
+            
+            document.body.appendChild(item);
+            
+            // Remove item after animation to prevent memory leak
+            setTimeout(() => {
+                item.remove();
+            }, 8000);
+        }
+
+        // Create items every 150ms for a gentle festive rain
+        setInterval(createFallingItem, 150);
     </script>
 </body>
 </html>
