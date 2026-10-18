@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NikhilBuilds | Automation & Web Tools</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg: #0a0e27; --text: #e6edf3; --muted: #9aa9b8; --accent: #4ade80; --accent2: #60a5fa; --gradient: linear-gradient(135deg, #4ade80 0%, #60a5fa 100%); }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+        
+        /* Hero Section */
+        .hero { min-height: 80vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 2rem; position: relative; }
+        .hero::before { content:''; position: absolute; inset:0; background: radial-gradient(circle at 50% 50%, rgba(74,222,128,0.1) 0%, transparent 60%); z-index:-1; }
+        .badge { background: rgba(74,222,128,0.1); color: var(--accent); padding: 6px 16px; border-radius: 99px; font-size: 0.85rem; font-weight: 600; margin-bottom: 1.5rem; border: 1px solid rgba(74,222,128,0.2); }
+        h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 1rem; }
+        h1 span { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .sub { color: var(--muted); font-size: 1.2rem; max-width: 600px; margin-bottom: 2rem; }
+        .cta-group { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+        .btn { padding: 14px 28px; border-radius: 12px; font-weight: 600; text-decoration: none; transition: all 0.3s; }
+        .btn-primary { background: var(--gradient); color: #0a0e27; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(74,222,128,0.3); }
+        .btn-secondary { background: rgba(255,255,255,0.05); color: var(--text); border: 1px solid rgba(255,255,255,0.1); }
+        .btn-secondary:hover { background: rgba(255,255,255,0.1); }
+
+        /* Projects Section */
+        .section { padding: 5rem 2rem; max-width: 1000px; margin: 0 auto; }
+        .section-title { font-size: 2rem; font-weight: 700; margin-bottom: 3rem; text-align: center; }
+        .project-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; }
+        @media(max-width: 768px) { .project-card { grid-template-columns: 1fr; } }
+        .project-img { width: 100%; height: 250px; background: linear-gradient(135deg, rgba(74,222,128,0.1), rgba(96,165,250,0.1)); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 0.9rem; border: 1px dashed rgba(255,255,255,0.2); }
+        .project-info h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .project-info p { color: var(--muted); margin-bottom: 1.5rem; }
+        .tags { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .tag { background: rgba(255,255,255,0.05); padding: 4px 12px; border-radius: 6px; font-size: 0.8rem; color: var(--muted); }
+
+        /* Services Grid */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+        .service-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 2rem; transition: all 0.3s; }
+        .service-card:hover { transform: translateY(-4px); border-color: rgba(74,222,128,0.3); }
+        .service-icon { font-size: 2rem; margin-bottom: 1rem; }
+        .service-card h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+        .service-card p { color: var(--muted); font-size: 0.95rem; }
+
+        /* Footer */
+        footer { text-align: center; padding: 3rem 2rem; border-top: 1px solid rgba(255,255,255,0.08); color: var(--muted); margin-top: 3rem; }
+        .social-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1.5rem; }
+        .social-links a { color: var(--text); text-decoration: none; font-weight: 500; transition: color 0.2s; }
+        .social-links a:hover { color: var(--accent); }
+    </style>
+</head>
+<body>
+    <!-- Hero -->
+    <section class="hero">
+        <div class="badge"> Available for Freelance Work</div>
+        <h1>I Build <span>Automation Tools</span><br>That Save Time & Money</h1>
+        <p class="sub">Python developer specializing in web scraping, AI automation, and custom business tools. Turning complex workflows into simple, one-click solutions.</p>
+        <div class="cta-group">
+            <a href="mailto:hello@nikhilbuilds.com" class="btn btn-primary">Hire Me</a>
+            <a href="#projects" class="btn btn-secondary">View Projects</a>
+        </div>
+    </section>
+
+    <!-- Featured Project -->
+    <section id="projects" class="section">
+        <h2 class="section-title">Featured Project</h2>
+        <div class="project-card">
+            <div class="project-img">[Paste SiteCheck Screenshot Here]</div>
+            <div class="project-info">
+                <h3>SiteCheck 🩺</h3>
+                <p>An automated website health auditor that generates PDF reports covering SEO, speed, security, and mobile-friendliness. Built with Python, Flask, and FPDF2.</p>
+                <div class="tags">
+                    <span class="tag">Python</span><span class="tag">Flask</span><span class="tag">AI Automation</span><span class="tag">SEO</span>
+                </div>
+                <a href="https://sitecheck.nikhilbuilds.com" target="_blank" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.9rem;">Try Live Demo →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="section">
+        <h2 class="section-title">Services I Offer</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🕷️</div>
+                <h3>Web Scraping & Data Mining</h3>
+                <p>Extract structured data from any website. Clean, organized CSV/Excel delivery for e-commerce, real estate, and lead generation.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">⚡</div>
+                <h3>Business Automation</h3>
+                <p>Automate repetitive tasks like invoice processing, email sorting, and report generation using Python scripts and AI APIs.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">️</div>
+                <h3>Custom Tool Development</h3>
+                <p>Bespoke CLI tools, dashboards, and internal software tailored to your specific business workflow and requirements.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📊</div>
+                <h3>Website Health Audits</h3>
+                <p>Comprehensive technical SEO, speed, and security audits with actionable PDF reports and implementation support.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="https://github.com/imnick009" target="_blank">GitHub</a>
+            <a href="https://linkedin.com/in/your-profile" target="_blank">LinkedIn</a>
+            <a href="mailto:hello@nikhilbuilds.com">Email</a>
+        </div>
+        <p>© 2026 NikhilBuilds. Built with ☕ and Python.</p>
+    </footer>
+</body>
+</html>
